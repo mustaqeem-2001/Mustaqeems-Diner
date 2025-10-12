@@ -61,13 +61,13 @@ function addToBasket(item) {
 
     let totalPriceHtml = 
     `
-        <section class="total-price" id="total-price">
+        <div class="total-price" id="total-price">
             <p class="total-price-text">Total price: 
                 <span class="total-price-amount" id="total-price-amount">
                     $${totalPrice};
                 </span>
             </p>
-        </section>
+        </div>
     `
     orderDetails.innerHTML = html + totalPriceHtml;
 }
