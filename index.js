@@ -8,7 +8,7 @@ let shoppingList = [];
 addItem.addEventListener("click", function(event) {
     if (event.target.id) {
         if (addItem.querySelector(`i#${event.target.id}`)) {
-            addToBasket(event.target.id, `${event.target.id}-price`);
+            addToBasket(event.target.id);
         }
         else {
             console.error("Error: Id found but, not associated to any of our products tags.");
@@ -19,43 +19,57 @@ addItem.addEventListener("click", function(event) {
     }
 })
 
-function addToBasket(item, price) {
-    let itemPrice = document.getElementById(`${price}`).textContent;
+function addToBasket(item) {
     shoppingList.push(item);
-
-    const itemAmount = shoppingList.reduce(function(total, i){
-        if (i === item) {
-            return total + 1;
-        }
-        return total;
-    }, 0);
-
+    
     const copyArray = shoppingList.slice();
     const filteredShoppingListSet = new Set(copyArray);
     const filteredShoppingListArray = [...filteredShoppingListSet];
+    let totalPrice = 0;
 
-    const html = filteredShoppingListArray.map(function(item){
-        return `
-            <div class="items-selected" id="items-selected">
-                <h2 class="order-title" id="order-title">${item}</h2>
-                <span class="item-amount" id="item-amount">${itemAmount}</span>
-                <span class="remove-item" id="remove-item">remove</span>   
-                <span class="item-price" id="item-price">${itemPrice}</span>
+    const itemAmount = shoppingList.reduce(function(object, i){
+            if (object[i]) {
+                object[i]++;
+            }
+            else {
+                object[i] = 1;
+            }
+            return object;
+        }, {});
+    
+
+    let html = ``;
+    filteredShoppingListArray.forEach(function(shoppingListItem) {
+    
+        let itemPrice = 0;
+        menuArray.forEach(function(product) {
+            if (product.name === shoppingListItem) {
+                itemPrice = itemAmount[shoppingListItem] * product.price;
+            }
+        })
+        html += `
+            <div class="items-selected" id="${item}-selected">
+                <h2 class="order-title" id="${item}-title">${shoppingListItem}</h2>
+                <span class="item-amount" id="${item}-amount">${itemAmount[shoppingListItem]}</span>
+                <span class="remove-item" id="remove-${item}">remove</span>   
+                <span class="item-price" id="${item}-price">${itemPrice}</span>
             </div>
         `;
-    }).join('');
+        totalPrice += itemPrice;
+    });
     
+
     let totalPriceHtml = 
     `
         <section class="total-price" id="total-price">
             <p class="total-price-text">Total price: 
                 <span class="total-price-amount" id="total-price-amount">
-                    $
+                    $${totalPrice};
                 </span>
             </p>
         </section>
     `
-    orderDetails.innerHTML = html;
+    orderDetails.innerHTML = html + totalPriceHtml;
 }
 
 function render() {
