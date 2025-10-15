@@ -10,10 +10,13 @@ h1, p {
     margin: 0
 }
 
-h1 {
-    color: white;
+h1, h2 {
     font-size: 39px;
     font-weight: 500;
+}
+
+h1 {
+    color: white
 }
 
 
@@ -90,4 +93,79 @@ h1 {
 
 .item-price {
     font-size: 1.2em;
+}
+
+
+/* Order details */
+
+.order-details {
+    width: 504px;
+    margin: auto;
+    display: none;
+} 
+
+.order-title {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+}
+
+.items-selected {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-title {
+    display: flex;
+    gap: 6px;
+    font-size: 1.5em;
+    line-height: 35px;
+}
+
+.item-amount {
+    font-size: 0.7em;
+    text-align: center;
+}
+
+.remove-item {
+    color: #8B8B8B;
+    font-size: 0.5em;
+    cursor: pointer;
+}
+
+.remove-item, .item-amount {
+    margin: auto 0;
+}
+
+.individual-item-price {
+    font-size: 0.8em;
+    margin: 0 0 0 auto;
+}
+
+.total-price {
+    border-top: 2px solid #393333;
+    padding: 20px 0 50px;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.total-price-amount {
+    font-size: 0.8em;
+}
+
+.complete-order-btn {
+    background-color: #16DB99;
+    text-align: center;
+    padding: 18px 0;
+    margin-bottom: 25px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.9em;
+    font-weight: 900;
+    border: none;
+    border-radius: 5px;
+    width: inherit;
+    cursor: pointer;
 }

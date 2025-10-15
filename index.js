@@ -2,7 +2,10 @@ import { menuArray } from '/data.js';
 
 const itemDetails = document.getElementById("items-list");
 const addItem = document.getElementById(`items-list`);
-const orderDetails = document.getElementById('order-details');
+const orderDetais = document.getElementById('order-details');
+const orderItems = document.getElementById('order-items');
+const completeOrderBtn = document.getElementById("complete-order-btn");
+
 let shoppingList = [];
 
 addItem.addEventListener("click", function(event) {
@@ -19,9 +22,45 @@ addItem.addEventListener("click", function(event) {
     }
 })
 
+
+orderItems.addEventListener("click", e => {
+
+    if (e.target.id) {
+        if (orderItems.querySelector(`p#${e.target.id}`)) {
+            const parentContainerText = orderItems.querySelector(`p#${e.target.id}`).parentElement.firstChild.nodeValue.trim();
+            removeFromBasket(parentContainerText);
+        }
+        else {
+            console.error("Error: Id found but, not associated to any of our products tags.");
+        }
+    }
+    else {
+        console.error("Error: user clicked on an empty space.");
+    }
+})
+
+completeOrderBtn.addEventListener("click", function() {
+    
+})
+
+
 function addToBasket(item) {
+    orderDetais.style.display = "block";
     shoppingList.push(item);
     
+    update();
+}
+
+function removeFromBasket(itemId) {
+    console.log("item Id: " + itemId);
+    const indexToRemove = shoppingList.indexOf(itemId);
+    console.log("Index is at: " + indexToRemove);
+    shoppingList.splice(indexToRemove, 1);
+    console.log("After removal: "+ shoppingList);
+    update();
+}
+
+function update() {
     const copyArray = shoppingList.slice();
     const filteredShoppingListSet = new Set(copyArray);
     const filteredShoppingListArray = [...filteredShoppingListSet];
@@ -48,11 +87,12 @@ function addToBasket(item) {
             }
         })
         html += `
-            <div class="items-selected" id="${item}-selected">
-                <h2 class="order-title" id="${item}-title">${shoppingListItem}</h2>
-                <span class="item-amount" id="${item}-amount">${itemAmount[shoppingListItem]}</span>
-                <span class="remove-item" id="remove-${item}">remove</span>   
-                <span class="item-price" id="${item}-price">${itemPrice}</span>
+            <div class="items-selected" id="${shoppingListItem}-selected">
+                <div class="item-title" id="${shoppingListItem}-title">${shoppingListItem}
+                    <p class="item-amount" id="${shoppingListItem}-amount">x${itemAmount[shoppingListItem]}</p>
+                    <p class="remove-item" id="remove-${shoppingListItem}">remove</p>   
+                    <p class="individual-item-price" id="${shoppingListItem}-price">$${itemPrice}</p>
+                </div>
             </div>
         `;
         totalPrice += itemPrice;
@@ -62,14 +102,13 @@ function addToBasket(item) {
     let totalPriceHtml = 
     `
         <div class="total-price" id="total-price">
-            <p class="total-price-text">Total price: 
-                <span class="total-price-amount" id="total-price-amount">
-                    $${totalPrice};
-                </span>
+            <p class="total-price-text">Total price:</p>
+            <p class="total-price-amount" id="total-price-amount">
+                $${totalPrice}
             </p>
         </div>
     `
-    orderDetails.innerHTML = html + totalPriceHtml;
+    orderItems.innerHTML = html + totalPriceHtml;
 }
 
 function render() {
