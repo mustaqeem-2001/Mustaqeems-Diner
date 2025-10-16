@@ -10,27 +10,57 @@
    </head>
     <body>
         <div class="content">
-             <section class="header" id="header">
+            <section class="header" id="header">
                 <!-- background image here -->
-                <div class="header-text">
-                    <h1>Mustaqeem's Diner</h1>
-                    <p id="title-info">The best burgers and pizzas in town</p>
-                </div>
-             </section>
-             <section class="items-list" id="items-list">
-                <!-- Items to be sold here -->
-             </section>
-             <section class="order-details" id="order-details">
+               <div class="header-text">
+                  <h1>Mustaqeem's Diner</h1>
+                  <p id="title-info">The best burgers and pizzas in town</p>
+               </div>
+            </section>
+            <section class="items-list" id="items-list">
+                <!-- Items to be sold go here -->
+            </section>
+            <section class="order-details" id="order-details">
                <h2 class="order-title">Your Order</h2>
                <div class="order-items" id="order-items"></div>
                <button class="complete-order-btn" id="complete-order-btn">Complete order</button>
-             </section>
+            </section>
 
-             <section class="card-details" id="card-details">
-                <input type="text" required placeholder="Enter your name"></input>
-                <input type="number" required placeholder="Enter your card number"></input>
-                <input type="number" required placeholder="Enter CVV"></input>
-             </section>
+            <section class="card-details" id="card-details">
+               <h2>Enter your card details</h2>
+               <form>
+                  <input type="text" 
+                     placeholder="Enter your name" 
+                     class="input-name" 
+                     id="input-name" 
+                     name="input-name"
+                     aria-label="Name on card"
+                     required>
+                  </input>
+                  
+                  <input type="text" 
+                     placeholder="Enter your card number" 
+                     class="card-number-input" 
+                     id="card-number-input"
+                     name="card-number-input"
+                     aria-label="Card Number"
+                     maxlength="16"
+                     required>
+                  </input>
+                  
+                  <input type="password" 
+                     placeholder="Enter CVV"  
+                     class="cvv-input" 
+                     id="cvv-input" 
+                     name="cvv-input"
+                     minlength="3"
+                     maxlength="4"
+                     aria-label="Card CVV"
+                     required>
+                  </input>
+                  <button type="submit" class="submitBtn" id="submitBtn">Pay</button>
+               </form>
+            </section>
         </div>
 
 	<script src="index.js" type="module"></script>
