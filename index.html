@@ -5,6 +5,7 @@
        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
        <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Roboto:ital,wght@0,100..900;1,100..900&family=Smythe&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- CDN -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
    </head>
@@ -28,10 +29,10 @@
 
             <section class="card-details" id="card-details">
                <h2>Enter your card details</h2>
-               <form>
+               <form class="card-details-form">
                   <input type="text" 
                      placeholder="Enter your name" 
-                     class="input-name" 
+                     class="input-name card-details-group" 
                      id="input-name" 
                      name="input-name"
                      aria-label="Name on card"
@@ -40,7 +41,7 @@
                   
                   <input type="text" 
                      placeholder="Enter your card number" 
-                     class="card-number-input" 
+                     class="card-number-input card-details-group" 
                      id="card-number-input"
                      name="card-number-input"
                      aria-label="Card Number"
@@ -50,7 +51,7 @@
                   
                   <input type="password" 
                      placeholder="Enter CVV"  
-                     class="cvv-input" 
+                     class="cvv-input card-details-group" 
                      id="cvv-input" 
                      name="cvv-input"
                      minlength="3"
@@ -58,7 +59,7 @@
                      aria-label="Card CVV"
                      required>
                   </input>
-                  <button type="submit" class="submitBtn" id="submitBtn">Pay</button>
+                  <button type="submit" class="submitPayBtn" id="submitPayBtn">Pay</button>
                </form>
             </section>
         </div>

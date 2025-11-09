@@ -5,6 +5,8 @@ const addItem = document.getElementById(`items-list`);
 const orderDetais = document.getElementById('order-details');
 const orderItems = document.getElementById('order-items');
 const completeOrderBtn = document.getElementById("complete-order-btn");
+const submitPayBtn = document.getElementById("submitPayBtn");
+const cardDetails = document.getElementById("card-details");
 
 let shoppingList = [];
 
@@ -40,14 +42,14 @@ orderItems.addEventListener("click", e => {
 })
 
 completeOrderBtn.addEventListener("click", function() {
-    
+    cardDetails.style.display = "block";
+    console.log("clicked!");
 })
 
 
 function addToBasket(item) {
     orderDetais.style.display = "block";
     shoppingList.push(item);
-    
     update();
 }
 
