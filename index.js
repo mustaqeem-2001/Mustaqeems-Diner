@@ -84,11 +84,8 @@ function addToBasket(item) {
 }
 
 function removeFromBasket(itemId) {
-    console.log("item Id: " + itemId);
     const indexToRemove = shoppingList.indexOf(itemId);
-    console.log("Index is at: " + indexToRemove);
     shoppingList.splice(indexToRemove, 1);
-    console.log("After removal: "+ shoppingList);
     update();
 }
 
