@@ -7,6 +7,11 @@ const orderItems = document.getElementById('order-items');
 const completeOrderBtn = document.getElementById("complete-order-btn");
 const submitPayBtn = document.getElementById("submitPayBtn");
 const cardDetails = document.getElementById("card-details");
+const thankYouMessageP = document.getElementById("thankYouMessageP");
+const cardName = document.getElementById("cardName");
+const inputName = document.getElementById("input-name");
+const cardNumberInput = document.getElementById("card-number-input");
+const cvvInput = document.getElementById("cvv-input");
 
 let shoppingList = [];
 
@@ -43,7 +48,32 @@ orderItems.addEventListener("click", e => {
 
 completeOrderBtn.addEventListener("click", function() {
     cardDetails.style.display = "block";
-    console.log("clicked!");
+})
+
+submitPayBtn.addEventListener("click", function(e){
+    e.preventDefault();
+
+    const cvvClean = cvvInput.value.replace(/\s/g, '');
+    const isCvvValid = cvvClean.length >= 3 && cvvClean.length <= 4 && /^\d+$/.test(cvvClean); 
+
+    const cardClean = cardNumberInput.value.replace(/\s/g, '');
+    const isCardValid = cardClean.length >= 12 && /^\d+$/.test(cardClean);
+    
+    const nameClean = inputName.value.trim();
+    const isNameValid = nameClean.length >= 1 && /^[a-zA-Z\s]+$/.test(nameClean);
+
+    if (!isCvvValid) {
+        console.error("CVV is Invalid (Must be 3 or 4 digits only).");
+    } 
+    else if (!isCardValid) {
+        console.error("Card Number is Invalid (Must be 12+ digits only).");
+    } 
+    else if (!isNameValid) {
+        console.error("Name is invalid (Must be at least 1 letter/space).");
+    }
+    else {
+        thankYouMessage();
+    }
 })
 
 
@@ -112,6 +142,18 @@ function update() {
     `
     orderItems.innerHTML = html + totalPriceHtml;
 }
+
+
+function thankYouMessage() {
+    cardDetails.style.display = "none";
+    thankYouMessageP.style.display = "block";
+    cardName.textContent = inputName.value;
+    completeOrderBtn.style.display = "none";
+    setTimeout(function() {
+        window.location.reload();
+    }, 3000)
+}
+
 
 function render() {
     let html = ``;

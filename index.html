@@ -36,8 +36,8 @@
                      id="input-name" 
                      name="input-name"
                      aria-label="Name on card"
-                     required>
-                  </input>
+                     minlength="1"
+                     required />
                   
                   <input type="text" 
                      placeholder="Enter your card number" 
@@ -45,9 +45,9 @@
                      id="card-number-input"
                      name="card-number-input"
                      aria-label="Card Number"
-                     maxlength="16"
-                     required>
-                  </input>
+                     maxlength="19"
+                     minlength="12"
+                     required />
                   
                   <input type="password" 
                      placeholder="Enter CVV"  
@@ -57,10 +57,16 @@
                      minlength="3"
                      maxlength="4"
                      aria-label="Card CVV"
-                     required>
-                  </input>
+                     required />
                   <button type="submit" class="submitPayBtn" id="submitPayBtn">Pay</button>
                </form>
+            </section>
+            <section >
+               <p class="thank-you-message" id="thankYouMessageP">
+                  Thanks,
+                  <span class="card-name" id="cardName"></span>
+                  ! Your order is on its way!
+               </p>
             </section>
         </div>
 
